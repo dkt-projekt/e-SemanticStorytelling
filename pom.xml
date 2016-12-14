@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.dkt</groupId>
   <artifactId>e-semanticstorytelling</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.5-SNAPSHOT</version>
   <name>e-SemanticStorytelling</name>
 
   <parent>
@@ -20,9 +20,22 @@
 		<dependency>
 			<groupId>de.dkt</groupId>
 			<artifactId>DKTCommon</artifactId>
-			<version>0.4-SNAPSHOT</version>
+			<version>0.5-SNAPSHOT</version>
 		</dependency>
-	</dependencies>	
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-cypher-compiler-2.1</artifactId>
+			<version>2.1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jersey</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-batch</artifactId>
+		</dependency>
+  </dependencies>	
 	<repositories>
 		<repository>
 			<id>freme-release</id>

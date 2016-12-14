@@ -1,0 +1,27 @@
+{
+  "name": "TestTemplate",
+  "mainEntity": "Person",
+  "events": [{
+    "predicate": "marry",
+    "subject": "Person",
+    "object": "Person",
+    "relevance": "1"
+  },
+  {
+    "predicate": "marry",
+    "subject": "Person",
+    "object": "Location",
+    "relevance": "1"
+  },{
+    "predicate": "born",
+    "subject": "Person",
+    "object": "Location",
+    "relevance": "1"
+  },
+  {
+    "predicate": "die",
+    "subject": "Person",
+    "object": "Location",
+    "relevance": "1"
+  }]
+}

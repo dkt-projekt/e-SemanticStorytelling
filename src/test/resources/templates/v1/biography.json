@@ -1,0 +1,85 @@
+{
+  "name": "TestTemplate",
+  "mainCharacter": {
+    "text": "TBF",
+    "type": "Person",
+    "url": "TBF",
+    "relevance": "1"
+  },
+  "events": [{
+    "predicate": {
+      "text": "marry",
+      "type": "Action",
+      "url": "TBF"
+    },
+    "subject": {
+      "text": "TBF",
+      "type": "Person",
+      "url": "TBF"
+    },
+    "object": {
+      "text": "TBF",
+      "type": "Person",
+      "url": "TBF"
+    },
+    "timestamp": "TBF",
+    "relevance": "1"
+  },
+  {
+    "predicate": {
+      "text": "born",
+      "type": "Action",
+      "url": "TBF"
+    },
+    "subject": {
+      "text": "TBF",
+      "type": "Person",
+      "url": "TBF"
+    },
+    "object": {
+      "text": "TBF",
+      "type": "Location",
+      "url": "TBF"
+    },
+    "timestamp": "TBF",
+    "relevance": "1"
+  },
+  {
+    "predicate": {
+      "text": "die",
+      "type": "Action",
+      "url": "TBF"
+    },
+    "subject": {
+      "text": "TBF",
+      "type": "Person",
+      "url": "TBF"
+    },
+    "object": {
+      "text": "TBF",
+      "type": "Location",
+      "url": "TBF"
+    },
+    "timestamp": "TBF",
+    "relevance": "1"
+  },
+  {
+    "predicate": {
+      "text": "",
+      "type": "Action",
+      "url": "TBF"
+    },
+    "subject": {
+      "text": "TBF",
+      "type": "Person",
+      "url": "TBF"
+    },
+    "object": {
+      "text": "TBF",
+      "type": "Person",
+      "url": "TBF"
+    },
+    "timestamp": "TBF",
+    "relevance": "1"
+  }]
+}
