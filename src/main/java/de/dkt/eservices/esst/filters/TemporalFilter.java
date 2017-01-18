@@ -7,7 +7,9 @@ import java.util.Locale;
 
 import org.json.JSONObject;
 
+import de.dkt.eservices.esst.linguistic.Event;
 import de.dkt.eservices.esst.templates.StoryTemplate;
+import de.dkt.eservices.esst.templates.Storyline;
 
 public class TemporalFilter implements Filter {
 
@@ -40,6 +42,18 @@ public class TemporalFilter implements Filter {
 	public StoryTemplate filterStory(StoryTemplate story) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void filterEvent(Event event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void filterStoryline(Storyline sl) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

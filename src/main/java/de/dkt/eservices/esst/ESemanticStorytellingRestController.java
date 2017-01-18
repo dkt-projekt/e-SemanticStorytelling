@@ -26,8 +26,8 @@ import de.dkt.eservices.esst.templates.StoryTemplate;
 import de.dkt.eservices.esst.templates.StoryTemplateFactory;
 import eu.freme.common.conversion.rdf.RDFConstants;
 import eu.freme.common.conversion.rdf.RDFConstants.RDFSerialization;
-import eu.freme.common.exception.BadRequestException;
 import eu.freme.common.conversion.rdf.RDFConversionService;
+import eu.freme.common.exception.BadRequestException;
 import eu.freme.common.rest.BaseRestController;
 import eu.freme.common.rest.NIFParameterSet;
 
@@ -201,7 +201,8 @@ public class ESemanticStorytellingRestController extends BaseRestController{
 		try {
 			StoryTemplate story = StoryTemplateFactory.extractTemplateFromString(sStory,"turtle");
 			List<Filter> filters = FilterFactory.extractFiltersFromString(sFilters, "json");
-			Model outputModel = sstService.regenerateStoryFromNIF(inModel, story, filters);
+			StoryTemplate st = sstService.regenerateStoryFromNIF(inModel, story, filters);
+			Model outputModel = st.getModel("http://dkt-projekt.dfki.de/ontology/stories/");
 			String nifOutput = NIFReader.model2String(outputModel, nifParameters.getOutformat());
 			InteractionManagement.sendInteraction("dkt-usage@"+request.getHeader("X-FORWARDED-FOR"), "usage", "e-sst/regenerateStory", "Success", "", "", "", "");
 			return new ResponseEntity<String>(nifOutput, new HttpHeaders(), HttpStatus.OK);
@@ -228,6 +229,8 @@ public class ESemanticStorytellingRestController extends BaseRestController{
 			@RequestHeader(value = "Content-Type", required = false) String contentTypeHeader,
 			@RequestParam(value = "storyType", required = false) String storyType,
 			@RequestParam(value = "filters", required = false) String sFilters,
+			@RequestParam(value = "version", required = false) String version,
+			@RequestParam(value = "threshold", required = false) double threshold,
 			@RequestBody(required = false) String postBody) throws Exception {
 
 		if (input == null) {
@@ -247,13 +250,16 @@ public class ESemanticStorytellingRestController extends BaseRestController{
         if (nifParameters.getInformat().equals(RDFConstants.RDFSerialization.PLAINTEXT)) {
 			rdfConversionService.plaintextToRDF(inModel, nifParameters.getInput(),language, nifParameters.getPrefix());
         } else {
-            inModel = rdfConversionService.unserializeRDF(nifParameters.getInput(), nifParameters.getInformat());
+            inModel = rdfConversionService.unserializeRDF(nifParameters.getInput(), informat);
         }
 		try {
-			boolean correctlyTrained = sstService.trainTemplate(inModel, storyType);
-			if(correctlyTrained){
+			StoryTemplate st= sstService.trainTemplate(inModel, storyType, version, threshold);
+			if(st!=null){
 				InteractionManagement.sendInteraction("dkt-usage@"+request.getHeader("X-FORWARDED-FOR"), "usage", "e-sst/trainTemplate", "Success", "", "", "", "");
-				return new ResponseEntity<String>("Template () correctly trained.", new HttpHeaders(), HttpStatus.OK);
+				Model outputModel = st.getModel("http://dkt-projekt.dfki.de/ontology/stories/");
+				String nifOutput = NIFReader.model2String(outputModel, nifParameters.getOutformat());
+				InteractionManagement.sendInteraction("dkt-usage@"+request.getHeader("X-FORWARDED-FOR"), "usage", "e-sst/regenerateStory", "Success", "", "", "", "");
+				return new ResponseEntity<String>(nifOutput, new HttpHeaders(), HttpStatus.OK);
 			}
 			else{
 				InteractionManagement.sendInteraction("dkt-usage@"+request.getHeader("X-FORWARDED-FOR"), "usage", "e-sst/trainTemplate", "Error", "", "Failure", "The training process returned FALSE value. Check the logs.", "");

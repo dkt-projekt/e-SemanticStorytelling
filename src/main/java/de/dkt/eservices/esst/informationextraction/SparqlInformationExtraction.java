@@ -12,6 +12,7 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 
+import de.dkt.eservices.esst.linguistic.Entity;
 import de.dkt.eservices.esst.linguistic.Event;
 import de.dkt.eservices.esst.templates.StoryTemplate;
 import de.dkt.eservices.esst.templates.Storyline;
@@ -118,6 +119,12 @@ public class SparqlInformationExtraction extends InformationExtraction {
 
 	@Override
 	public Storyline fillStoryline(Storyline sl) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Entity> getOrderedListEntities() {
 		// TODO Auto-generated method stub
 		return null;
 	}

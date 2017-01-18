@@ -296,7 +296,8 @@ public class GenericStoryTemplateV1 implements StoryTemplate {
 	}
 
 	public void addEventToModel(Model m, Event e, Resource storyAsResource, boolean belongsToStoryline){
-		String eventUri = storyAsResource.getURI() + "/event101";
+		
+		String eventUri = storyAsResource.getURI() + "/event-"+e.getSubject().getType()+"-"+e.getPredicate().getText()+"-"+e.getObject().getType();
 		Resource eventAsResource = m.createResource(eventUri);
 		m.add(eventAsResource, RDF.type, SST.Event);
 		m.add(eventAsResource, RDF.type, NIF.RFC5147String);
@@ -306,11 +307,15 @@ public class GenericStoryTemplateV1 implements StoryTemplate {
 		else{
 			m.add(eventAsResource, SST.belongsToStory, storyAsResource);
 		}
+
 		
 		//Add entities associated to event
 		Resource eventSubjectAsResource = m.createResource(eventUri+"/subj");
        	m.add(eventSubjectAsResource, RDF.type, SST.Entity);
        	m.add(eventSubjectAsResource, RDF.type, NIF.RFC5147String);
+       	if(e.getSubject().getText()==null){
+       		e.getSubject().setText("null");
+       	}
        	m.add(eventSubjectAsResource, SST.anchorOf, m.createTypedLiteral(e.getSubject().getText(), XSDDatatype.XSDstring));
        	m.add(eventSubjectAsResource, SST.entityUrl, m.createResource(e.getSubject().getUrl()));
 		
@@ -323,13 +328,21 @@ public class GenericStoryTemplateV1 implements StoryTemplate {
 		Resource eventObjectAsResource = m.createResource(eventUri+"/obj");
        	m.add(eventObjectAsResource, RDF.type, SST.Entity);
        	m.add(eventObjectAsResource, RDF.type, NIF.RFC5147String);
+       	if(e.getObject().getText()==null){
+       		e.getObject().setText("null");
+       	}
        	m.add(eventObjectAsResource, SST.anchorOf, m.createTypedLiteral(e.getObject().getText(), XSDDatatype.XSDstring));
        	m.add(eventObjectAsResource, SST.entityUrl, m.createResource(e.getObject().getUrl()));
 
        	m.add(eventAsResource, SST.eventSubject, eventSubjectAsResource);
     	m.add(eventAsResource, SST.eventPredicate, eventPredicateAsResource);
     	m.add(eventAsResource, SST.eventObject, eventObjectAsResource);
-    	m.add(eventAsResource, SST.timestamp, m.createTypedLiteral(e.getTimestamp(), XSDDatatype.XSDdateTime));
+    	try{
+        	m.add(eventAsResource, SST.timestamp, m.createTypedLiteral(e.getTimestamp(), XSDDatatype.XSDdateTime));
+    	}
+    	catch(Exception exc){
+        	m.add(eventAsResource, SST.timestamp, m.createTypedLiteral(new Date(), XSDDatatype.XSDdateTime));
+    	}
 	}
 	
 	public void addEntityToModel(Model m, String uri, Entity e){

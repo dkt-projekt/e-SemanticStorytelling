@@ -442,5 +442,17 @@ public class GenericStoryTemplateV2 implements StoryTemplate {
 		GenericStoryTemplateV2 gst = new GenericStoryTemplateV2(new JSONObject(inputJson));
 		System.out.println(gst.getJSONObject().toString(2));
 	}
+
+	@Override
+	public Entity getMainEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Event> getEvents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

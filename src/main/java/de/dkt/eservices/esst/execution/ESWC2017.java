@@ -75,8 +75,9 @@ public class ESWC2017 {
 			Model mAux = NIFReader.extractModelFromFormatString(content, RDFSerialization.JSON_LD);
 			biographies.add(mAux);
 
-			System.out.println(NIFReader.model2String(mAux, RDFSerialization.TURTLE));
-			System.exit(0);
+//			System.out.println(NIFReader.model2String(mAux, RDFSerialization.TURTLE));
+//			System.exit(0);
+
 //			int loc=0,per=0,org=0,unk=0,act=0;
 //
 //			Map<String,Map<String,String>> entitiesMap = NIFReader.extractEntitiesExtended(mAux);
@@ -122,30 +123,42 @@ public class ESWC2017 {
 //		System.out.println(TOTAL);
 
 		ESWC2017 eswc = new ESWC2017();
-//
-//		System.out.println(biographies.size());
-//		//Generate templates out of the goldsstandard. Use all of them for generating the templates.
+////
+////		System.out.println(biographies.size());
+////		//Generate templates out of the goldsstandard. Use all of them for generating the templates.
 //		StoryTemplate st1 = eswc.trainTemplate(biographies, storyType, trainingVersion, 0);
 //		JSONObject storyTrainedTemplate = st1.getEmptyTemplateJSONObject();
-//		System.out.println(storyTrainedTemplate.toString(2));
-////		
-//		System.out.println(st1.getSimpleScreenString());
+////		System.out.println(storyTrainedTemplate.toString(2));
+//////		
+////		System.out.println(st1.getSimpleScreenString());
+//
+//		StoryTemplate story = eswc.generateStory(biographies, st1, generationVersion, null);
 ////		StoryTemplate story = eswc.generateStory(biographies, storyType, generationVersion, null);
-		
-		eswc.crossEvaluation(6, biographies, 0, storyType, trainingVersion, generationVersion);
-		System.out.println("\n");
-		eswc.crossEvaluation(6, biographies, 1, storyType, trainingVersion, generationVersion);
-		System.out.println("\n");
-		eswc.crossEvaluation(6, biographies, threshold, storyType, trainingVersion, generationVersion);
-		System.out.println("\n");
-		eswc.crossEvaluation(6, biographies, 2, storyType, trainingVersion, generationVersion);
-		System.out.println("\n");
-		eswc.crossEvaluation(6, biographies, 5, storyType, trainingVersion, generationVersion);
-		System.out.println("\n");
-		eswc.crossEvaluation(6, biographies, 10, storyType, trainingVersion, generationVersion);
-		System.out.println("\n");
-		eswc.crossEvaluation(6, biographies, 15, storyType, trainingVersion, generationVersion);
+//
+////		System.out.println(story.getSimpleScreenString());
+//		System.out.println(NIFReader.model2String(story.getModel("http://persistence.dfki.de/stories"),RDFSerialization.TURTLE));
+////		eswc.crossEvaluation(6, biographies, 0, storyType, trainingVersion, generationVersion);
+////		System.out.println("\n");
+////		eswc.crossEvaluation(6, biographies, 1, storyType, trainingVersion, generationVersion);
+////		System.out.println("\n");
+////		eswc.crossEvaluation(6, biographies, threshold, storyType, trainingVersion, generationVersion);
+////		System.out.println("\n");
+////		eswc.crossEvaluation(6, biographies, 2, storyType, trainingVersion, generationVersion);
+////		System.out.println("\n");
+////		eswc.crossEvaluation(6, biographies, 5, storyType, trainingVersion, generationVersion);
+////		System.out.println("\n");
+////		eswc.crossEvaluation(6, biographies, 10, storyType, trainingVersion, generationVersion);
+////		System.out.println("\n");
+////		eswc.crossEvaluation(6, biographies, 15, storyType, trainingVersion, generationVersion);
 
+		StoryTemplate st22 = eswc.trainTemplate(biographies, storyType, "v2", 0.6);
+		JSONObject storyTrainedTemplate22 = st22.getEmptyTemplateJSONObject();
+		System.out.println(storyTrainedTemplate22.toString(2));
+		System.out.println(st22.getEmptyTemplateJSONObject().toString(2));
+		System.out.println(st22.getSimpleScreenString());
+
+//		StoryTemplate st33 = eswc.generateStory(biographies, st22, "v1", null);
+//		System.out.println(st33.getJSONObject().toString(2));
 	}
 	
 	

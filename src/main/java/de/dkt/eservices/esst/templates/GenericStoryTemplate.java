@@ -140,7 +140,7 @@ public class GenericStoryTemplate implements StoryTemplate {
 			Entity mainCharacter = new Entity(st3_1.getObject().asLiteral().getString(), st3_2.getObject().asResource().getURI(), st3_3.getObject().asLiteral().getString());
 
 			List<Event> events = getEventsFromModel(m,slResource,true);
-			Storyline sl = new Storyline(dateInitial, dateFinal, mainCharacter, events);
+			Storyline sl = new Storyline("storyline101", dateInitial, dateFinal, mainCharacter, events);
 			
 			storylines.add(sl);
 		}
@@ -385,12 +385,36 @@ public class GenericStoryTemplate implements StoryTemplate {
 		List<Storyline> storylines = new LinkedList<Storyline>();
 		
 		
-		storylines.add(new Storyline(new Date(116, 9, 9), new Date(116,10,10), new Entity("Hillary", "", ""), null));
+		storylines.add(new Storyline("storyline101",new Date(116, 9, 9), new Date(116,10,10), new Entity("Hillary", "", ""), null));
 		
 //		GenericStoryTemplate gst = new GenericStoryTemplate("TestTemplate", storylines, events);
 		GenericStoryTemplate gst = new GenericStoryTemplate(new JSONObject(inputJson));
 		System.out.println(gst.getJSONObject().toString(2));
 
+	}
+
+	@Override
+	public JSONObject getEmptyTemplateJSONObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getSimpleScreenString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Entity getMainEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Event> getEvents() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
