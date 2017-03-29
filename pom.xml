@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.dkt</groupId>
   <artifactId>e-semanticstorytelling</artifactId>
-  <version>0.6</version>
+  <version>0.7-SNAPSHOT</version>
   <name>e-SemanticStorytelling</name>
 
   <parent>
@@ -67,6 +67,6 @@
                 <connection>scm:git:git@github.com:dkt-projekt/e-SemanticStorytelling.git</connection>
                 <url>scm:git:git@github.com/dkt-projekt/e-SemanticStorytelling.git</url>
                 <developerConnection>scm:git:git@github.com:dkt-projekt/e-SemanticStorytelling.git</developerConnection>
-                <tag>e-semanticstorytelling-0.6</tag>
+                <tag>HEAD</tag>
 	</scm>
 </project>
